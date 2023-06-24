@@ -48,15 +48,15 @@ namespace PhantomDelivery {
         [SerializeField] private Timer globalTimer;
         [SerializeField] private int globalMaxTime = 100;
 
-        // debug
-        [SerializeField] private float currentGlobalTime;
-
-        // amount of fish caught
-        // amount of coin
+        [SerializeField] private int amountOfFish = 0;
+        [SerializeField] private int amountOfCoin = 0;
 
         // ghost hand prefab
 
         [SerializeField] private List<Timer> requests = new List<Timer>();
+
+        // debug
+        [SerializeField] private float currentGlobalTime;
 
         private void Start()
         {
@@ -98,7 +98,24 @@ namespace PhantomDelivery {
         public void ResetGame()
         {
             gameState = GameState.BeforeStart;
+
+            ResetFish();
+            ResetCoin();
         }
+
+
+        // collect fish
+        public void ChangeFish(int amount) => amountOfFish += amount;
+
+        // empty fish bucket
+        public void ResetFish() => amountOfFish = 0;
+
+        // collect coin
+        public void ChangeCoin(int amount) => amountOfCoin += amount;
+
+        // reset coin
+        public void ResetCoin() => amountOfCoin = 0;
+
 
         // Randomly Create Requests
 
@@ -106,14 +123,19 @@ namespace PhantomDelivery {
 
         // Randomly Place Ghost hands
 
-        // collect fish
 
-        // remove fish
+        public Vector3 RandomPositionWithinRadius(Vector3 center, float radius)
+        {
+            float angle = Random.Range(0f, 360f);
+            float distance = Random.Range(0f, radius);
 
-        // empty fish bucket
+            // Calculate the x and z coordinates based on angle and distance
+            float x = center.x + distance * Mathf.Cos(angle * Mathf.Deg2Rad);
+            float z = center.z + distance * Mathf.Sin(angle * Mathf.Deg2Rad);
 
-        // collect coin
-
-        // reset coin
+            // Create and return the resulting random position
+            Vector3 randomPosition = new Vector3(x, center.y, z);
+            return randomPosition;
+        }
     }
 }
