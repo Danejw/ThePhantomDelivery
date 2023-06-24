@@ -54,6 +54,8 @@ namespace PhantomDelivery {
         // amount of fish caught
         // amount of coin
 
+        // ghost hand prefab
+
         [SerializeField] private List<Timer> requests = new List<Timer>();
 
         private void Start()
