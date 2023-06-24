@@ -28,14 +28,18 @@ namespace PhantomDelivery {
                 switch (gameState)
                 {
                     case GameState.BeforeStart:
+                        // Create the global timer if it doesnt already exist
                         if (globalTimer == null) globalTimer = new Timer(globalMaxTime);
                         globalTimer.Reset();
+
                         // reset coin
                         break;
                     case GameState.InGame:
+                        // What happens when the game starts
                         globalTimer.Start();
                         break;
                     case GameState.EndGame:
+                        // What happens when the game ends
                         break;
                 }
             }
@@ -59,15 +63,20 @@ namespace PhantomDelivery {
 
         private void Update()
         {        
+            // What happens when the game is in play
             if (gameState == GameState.InGame)
             {
                 globalTimer.Update();
+
+                // Randomly Create Requests
+
+                // Randomly Place Fish
+
+                // Randomly Place Ghost hands
             }
 
-            if (globalTimer.RemainingTime <= 0)
-            {
-                gameState = GameState.EndGame;
-            }
+            // Condition to end the game
+            if (globalTimer.RemainingTime <= 0) gameState = GameState.EndGame;
 
 
             // debug
