@@ -56,14 +56,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_D8266549: 1
+    - Vector1_D8266549: 2
     - _Depth: 50
     - _Displacement: 0.0002
     - _NormalStrength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.885
+    - _ScrollSpeed: 100
+    - _Smoothness: 1
     m_Colors:
     - _DeepWater: {r: 0.10145959, g: 0.1483179, b: 0.2264151, a: 0.9647059}
+    - _NormalTiling: {r: 200, g: 200, b: 0, a: 0}
     - _ShallowWater: {r: 0.25533998, g: 0.28399292, b: 0.3584906, a: 0.80784315}
   m_BuildTextureStacks: []
