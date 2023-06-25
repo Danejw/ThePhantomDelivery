@@ -46,3 +46,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Water
+    uniqueID: 1506919813
+    locked: 0
+  - name: Effects
+    uniqueID: 3673457127
+    locked: 0

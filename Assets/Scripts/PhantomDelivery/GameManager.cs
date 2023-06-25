@@ -58,8 +58,6 @@ namespace PhantomDelivery {
         [SerializeField] private List<GameObject> fishList;
         [SerializeField] private List<GameObject> ghostHandList;
 
-        // ghost hand prefab
-
         [SerializeField] private List<Timer> requests = new List<Timer>();
 
         // debug
