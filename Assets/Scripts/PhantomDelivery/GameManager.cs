@@ -51,6 +51,13 @@ namespace PhantomDelivery {
         [SerializeField] private int amountOfFish = 0;
         [SerializeField] private int amountOfCoin = 0;
 
+        [SerializeField] private int minRadius = 5;
+        [SerializeField] private int maxRadius = 20;
+        [SerializeField] private GameObject fishPrefab;
+        [SerializeField] private GameObject ghostHandPrefab;
+        [SerializeField] private List<GameObject> fishList;
+        [SerializeField] private List<GameObject> ghostHandList;
+
         // ghost hand prefab
 
         [SerializeField] private List<Timer> requests = new List<Timer>();
@@ -120,14 +127,47 @@ namespace PhantomDelivery {
         // Randomly Create Requests
 
         // Randomly Place Fish
+        public void PlaceFish()
+        {
+            if (fishPrefab)
+            {
+                var fish = Instantiate(fishPrefab, RandomPositionWithinRange(Vector3.zero, minRadius, maxRadius), Quaternion.identity, transform);
+                fishList.Add(fish);
+            }
+        }
 
         // Randomly Place Ghost hands
+        public void PlaceGhostHands()
+        {
+            if (ghostHandPrefab)
+            {
+                var hand = Instantiate(ghostHandPrefab, RandomPositionWithinRange(Vector3.zero, minRadius, maxRadius), Quaternion.identity, transform);
+                ghostHandList.Add(hand);
+            }
+        }
 
+        public void ClearFishList()
+        {
+            foreach (var fish in fishList)
+            {
+                Destroy(fish);
+            }
+            fishList.Clear();
+        }
 
-        public Vector3 RandomPositionWithinRadius(Vector3 center, float radius)
+        public void ClearGhostHandList()
+        {
+            foreach (var hand in ghostHandList)
+            {
+                Destroy(hand);
+            }
+            ghostHandList.Clear();
+        }
+
+        public Vector3 RandomPositionWithinRange(Vector3 center, float minDistance, float maxDistance)
         {
             float angle = Random.Range(0f, 360f);
-            float distance = Random.Range(0f, radius);
+            float distance = Random.Range(minDistance, maxDistance);
 
             // Calculate the x and z coordinates based on angle and distance
             float x = center.x + distance * Mathf.Cos(angle * Mathf.Deg2Rad);
@@ -137,5 +177,6 @@ namespace PhantomDelivery {
             Vector3 randomPosition = new Vector3(x, center.y, z);
             return randomPosition;
         }
+
     }
 }

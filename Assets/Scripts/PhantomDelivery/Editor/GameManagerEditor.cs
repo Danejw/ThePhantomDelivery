@@ -20,6 +20,18 @@ namespace PhantomDelivery
 
             if (GUILayout.Button("Reset Game"))
                 gameManager.ResetGame();
+
+            if (GUILayout.Button("Place Fish"))
+                gameManager.PlaceFish();
+
+            if (GUILayout.Button("Place Ghost Hands"))
+                gameManager.PlaceGhostHands();
+
+            if (GUILayout.Button("Clear Fish List"))
+                gameManager.ClearFishList();
+
+            if (GUILayout.Button("Clear Ghost Hand List"))
+                gameManager.ClearGhostHandList();
         }
     }
 }
