@@ -189,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 92231854}
   - component: {fileID: 92231856}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Intro UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 234116935}
   - component: {fileID: 234116938}
   - component: {fileID: 234116936}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: World UI Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ RectTransform:
   m_GameObject: {fileID: 234116933}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_LocalScale: {x: 0.0050350362, y: 0.0050350362, z: 0.0050350362}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 92231854}
@@ -277,7 +277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.41}
   m_SizeDelta: {x: 600, y: 440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234116935
@@ -345,7 +345,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1314277063
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!222 &234116938
@@ -10451,7 +10451,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 563523505}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1181161597}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &563523505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10576,7 +10588,7 @@ GameObject:
   - component: {fileID: 566623378}
   - component: {fileID: 566623380}
   - component: {fileID: 566623379}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Approach controls Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10623,12 +10635,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome to the XR Interaction Toolkit examples, here you\u2019ll find
-    examples of an XR rig setup with ray and grab interactors, locomotion settings
-    and a variety of interactive objects.\n\nYou can use this walkthrough to teleport
-    through the interactive stations, or your right thumbstick to teleport and your
-    left thumbstick to move freely between areas.\n\nInteract with 2D UI with the
-    trigger button, and 3D controls with the grip."
+  m_text: 'Welcom to The Phantom Delivery!
+
+
+    To control the boat, grab the lever
+    with the grip button and and press the trigger to start moving!
+
+
+    Have Fun
+    :)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
   m_sharedMaterial: {fileID: 4687939059374929122, guid: f675742eaf9c20a4f909d78ee7a14fed,
@@ -10663,8 +10678,8 @@ MonoBehaviour:
   m_fontSizeMin: 0.1
   m_fontSizeMax: 400
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -10764,7 +10779,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start Walkthrough
+  m_text: Got it
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
   m_sharedMaterial: {fileID: 4687939059374929122, guid: f675742eaf9c20a4f909d78ee7a14fed,
@@ -10792,8 +10807,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0.1
@@ -10854,7 +10869,7 @@ GameObject:
   - component: {fileID: 688237904}
   - component: {fileID: 688237903}
   - component: {fileID: 688237902}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Backing Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10954,7 +10969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1181161598}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Show Content on UI or World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11460,7 +11475,7 @@ GameObject:
   - component: {fileID: 1565453567}
   - component: {fileID: 1565453568}
   - component: {fileID: 1565453569}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Camera Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11658,7 +11673,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1611893775
 Canvas:
   m_ObjectHideFlags: 0
@@ -11988,7 +12003,7 @@ GameObject:
   - component: {fileID: 2054777788}
   - component: {fileID: 2054777790}
   - component: {fileID: 2054777789}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Camera Representation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12575,7 +12590,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12619,7 +12634,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0

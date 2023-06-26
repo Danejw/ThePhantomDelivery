@@ -66,6 +66,9 @@ namespace PhantomDelivery {
         private void Start()
         {
             gameState = GameState.BeforeStart;
+
+            // temporary
+            StartCoroutine(PlaceFishRoutine(10, 1));
         }
 
         private void Update()
@@ -131,6 +134,15 @@ namespace PhantomDelivery {
             {
                 var fish = Instantiate(fishPrefab, RandomPositionWithinRange(Vector3.zero, minRadius, maxRadius), Quaternion.identity, transform);
                 fishList.Add(fish);
+            }
+        }
+
+        public IEnumerator PlaceFishRoutine(int amount, float time)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                PlaceFish();
+                yield return new WaitForSeconds(time);
             }
         }
 
