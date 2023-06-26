@@ -85,6 +85,9 @@ public class Motor : XRJoystick
 
         isActivated = true;
 
+        // haptics
+        m_Controller.SendHapticImpulse(1, 20);
+
         // play and loop the motor running sound clip
         PlayMotorRunningLoop();
 
@@ -97,6 +100,9 @@ public class Motor : XRJoystick
         base.OnDeactivated(args);
 
         isActivated = false;
+
+        // haptics (stops it)
+        m_Controller.SendHapticImpulse(0, 0);
 
         // play and loop idle sound clip
         PlayMotorIdleLoop();

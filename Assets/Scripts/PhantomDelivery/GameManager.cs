@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using UnityEngine;
+using TMPro;
 
 
 namespace PhantomDelivery {
@@ -16,6 +17,8 @@ namespace PhantomDelivery {
             EndGame,
         }
 
+        [Space(5)]
+        [Header("Game State")]
         [SerializeField] private GameState _gameState;
 
         public GameState gameState
@@ -24,6 +27,8 @@ namespace PhantomDelivery {
             set 
             { 
                 _gameState = value; 
+
+                onGameStateChanged?.Invoke(value);
 
                 switch (gameState)
                 {
@@ -45,14 +50,56 @@ namespace PhantomDelivery {
             }
         }
 
+        // Events
+        public delegate void OnGameStateChanged(GameState state);
+        public static event OnGameStateChanged onGameStateChanged;
+
+        public delegate void OnGameStart();
+        public static event OnGameStart onGameStart;
+
+        public delegate void OnGameEnd();
+        public static event OnGameEnd onGameEnd;
+
+        public delegate void OnGameReset();
+        public static event OnGameReset onGameReset;
+
+        public delegate void OnFishCaught();
+        public static event OnFishCaught onFishCaught;
+
+        public delegate void OnFishStolen();
+        public static event OnFishStolen onFishStolen;
+
+        public delegate void OnNewDeliveryRequest();
+        public static event OnNewDeliveryRequest onNewDeliveryRequest;
+
+        public delegate void OnSuccessfulDelivery();
+        public static event OnSuccessfulDelivery onSuccessfulDelivery;
+
+        public delegate void OnFailedDelivery();
+        public static event OnFailedDelivery onFailedDelivery;
+
+        [Space(5)]
+        [Header("UI References")]
+        [SerializeField] private TMP_Text globalTimeAmountText;
+        [SerializeField] private TMP_Text fishAmountText;
+        [SerializeField] private TMP_Text coinAmountText;
+        [SerializeField] private TMP_Text requestAmountTimeText;
+
+
+        [Space(5)]
+        [Header("Game Values")]
         [SerializeField] private Timer globalTimer;
         [SerializeField] private int globalMaxTime = 100;
+        [SerializeField] private float currentGlobalTime;
 
         [SerializeField] private int amountOfFish = 0;
         [SerializeField] private int amountOfCoin = 0;
 
         [SerializeField] private int minRadius = 5;
         [SerializeField] private int maxRadius = 20;
+
+        [Space(5)]
+        [Header("Prefab References")]
         [SerializeField] private GameObject fishPrefab;
         [SerializeField] private GameObject ghostHandPrefab;
         [SerializeField] private List<GameObject> fishList;
@@ -60,15 +107,10 @@ namespace PhantomDelivery {
 
         [SerializeField] private List<Timer> requests = new List<Timer>();
 
-        // debug
-        [SerializeField] private float currentGlobalTime;
 
         private void Start()
         {
             gameState = GameState.BeforeStart;
-
-            // temporary
-            StartCoroutine(PlaceFishRoutine(10, 1));
         }
 
         private void Update()
@@ -91,16 +133,28 @@ namespace PhantomDelivery {
 
             // debug
             currentGlobalTime = globalTimer.ElapsedTime;
+
+            // Update UI
+            if (fishAmountText && fishAmountText.text != amountOfFish.ToString()) { fishAmountText.text = amountOfFish.ToString(); }
+            if (coinAmountText && coinAmountText.text != amountOfCoin.ToString()) { coinAmountText.text = amountOfCoin.ToString(); }
+            if (globalTimeAmountText && globalTimeAmountText.text != globalTimer.RemainingTime.ToString()) { globalTimeAmountText.text = Mathf.RoundToInt(globalTimer.RemainingTime).ToString(); }
+            // request UI
         }
 
         public void StartGame()
         {
             gameState = GameState.InGame;
+
+            onGameStart?.Invoke();
+
+            StartCoroutine(PlaceFishRoutine(10, 1));
         }
 
         public void EndGame()
         {
             gameState = GameState.EndGame;
+
+            onGameEnd?.Invoke();
         }
 
         public void ResetGame()
@@ -109,20 +163,51 @@ namespace PhantomDelivery {
 
             ResetFish();
             ResetCoin();
+
+            currentGlobalTime = 0;
+
+            onGameReset?.Invoke();
         }
 
 
         // collect fish
-        public void ChangeFish(int amount) => amountOfFish += amount;
+        public void AddFish(int amount)
+        {
+            amountOfFish += amount;
+
+            onFishCaught?.Invoke();
+        }
+
+        public void StealFish(int amount)
+        {
+            if (amountOfFish == 0) return;
+
+            amountOfFish -= amount;
+
+            onFishStolen?.Invoke();
+        }
 
         // empty fish bucket
-        public void ResetFish() => amountOfFish = 0;
+        public void ResetFish()
+        {
+            amountOfFish = 0;
+        }
 
         // collect coin
-        public void ChangeCoin(int amount) => amountOfCoin += amount;
+        public void ChangeCoin(int amount)
+        {
+            if (amount < 0 && amountOfCoin == 0) return;
+
+            amountOfCoin += amount;
+
+            onSuccessfulDelivery?.Invoke();
+        }
 
         // reset coin
-        public void ResetCoin() => amountOfCoin = 0;
+        public void ResetCoin()
+        {
+            amountOfCoin = 0;
+        }
 
 
         // Randomly Create Requests

@@ -32,6 +32,21 @@ namespace PhantomDelivery
 
             if (GUILayout.Button("Clear Ghost Hand List"))
                 gameManager.ClearGhostHandList();
+
+            if (GUILayout.Button("Add Fish"))
+                gameManager.AddFish(1);
+
+            if (GUILayout.Button("Steal Fish"))
+                gameManager.StealFish(1);
+
+            if (GUILayout.Button("Reset Fish"))
+                gameManager.ResetFish();
+
+            if (GUILayout.Button("Add Coin"))
+                gameManager.ChangeCoin(1);
+
+            if (GUILayout.Button("Reset Coin"))
+                gameManager.ResetCoin();
         }
     }
 }
