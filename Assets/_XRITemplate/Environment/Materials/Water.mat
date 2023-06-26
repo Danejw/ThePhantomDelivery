@@ -58,7 +58,7 @@ Material:
     m_Floats:
     - Vector1_D8266549: 2
     - _Depth: 50
-    - _Displacement: 0.0002
+    - _Displacement: 0
     - _NormalStrength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
