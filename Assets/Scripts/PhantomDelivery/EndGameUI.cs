@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PhantomDelivery
 {
-    public class InGameUi : MonoBehaviour
+    public class EndGameUI : MonoBehaviour
     {
 
         private void Start()
@@ -25,7 +25,7 @@ namespace PhantomDelivery
             switch (state)
             {
                 case GameManager.GameState.InGame:
-                    gameObject.SetActive(true); 
+                    gameObject.SetActive(false); 
                     break;
                 case GameManager.GameState.BeforeStart:
                     gameObject.SetActive(false);
