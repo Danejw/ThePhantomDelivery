@@ -14428,23 +14428,33 @@ PrefabInstance:
     - target: {fileID: -6722085885383957590, guid: 72b4714fe12103b4389fab81ff0527c7,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.16300285
+      value: 0.8726415
       objectReference: {fileID: 0}
     - target: {fileID: -6722085885383957590, guid: 72b4714fe12103b4389fab81ff0527c7,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.4120199
+      value: 0.924198
       objectReference: {fileID: 0}
     - target: {fileID: -6722085885383957590, guid: 72b4714fe12103b4389fab81ff0527c7,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.9339623
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1461304994638716399, guid: 72b4714fe12103b4389fab81ff0527c7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7db5bf7bfdd9edb468465fb062f8b7be, type: 2}
+    - target: {fileID: -447275898630060098, guid: 72b4714fe12103b4389fab81ff0527c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 72b4714fe12103b4389fab81ff0527c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.14
+      objectReference: {fileID: 0}
     - target: {fileID: 65702495048144492, guid: 72b4714fe12103b4389fab81ff0527c7,
         type: 3}
       propertyPath: m_IsActive
