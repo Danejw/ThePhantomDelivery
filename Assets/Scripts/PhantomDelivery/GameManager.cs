@@ -115,7 +115,6 @@ namespace PhantomDelivery {
         [SerializeField] private GameObject ghostHousePrefab;
         [SerializeField] private List<GameObject> fishList;
         [SerializeField] private List<GameObject> ghostHandList;
-        [SerializeField] private List<GameObject> ghostHouseList;
 
         [SerializeField] private PhantomHouse currentRequest;
 
@@ -154,7 +153,7 @@ namespace PhantomDelivery {
 
             // Condition to end the game
             if (globalTimer.RemainingTime <= 0) gameState = GameState.EndGame;
-
+            if (currentRequest.timer.RemainingTime <= 0) FailedDelivery();
 
             // debug
             currentGlobalTime = globalTimer.ElapsedTime;
@@ -186,6 +185,9 @@ namespace PhantomDelivery {
 
             ResetFish();
             ResetCoin();
+
+            ClearFishList();
+            ghostHandList.Clear();
 
             currentGlobalTime = 0;
 
@@ -232,7 +234,7 @@ namespace PhantomDelivery {
 
         public void SuccessfulDelivery(int coinAmount)
         {
-            Destroy(currentRequest.gameObject);
+            if (currentRequest) Destroy(currentRequest.gameObject);
 
             onSuccessfulDelivery?.Invoke();
 
@@ -243,7 +245,7 @@ namespace PhantomDelivery {
 
         public void FailedDelivery()
         {
-            Destroy(currentRequest.gameObject);
+            if (currentRequest) Destroy(currentRequest.gameObject);
 
             onFailedDelivery?.Invoke();
 
@@ -258,7 +260,6 @@ namespace PhantomDelivery {
 
             var house = Instantiate(ghostHousePrefab, RandomPositionWithinRange(Vector3.zero, maxRadius, maxRadius + 20),  Quaternion.identity, transform);
             house.transform.LookAt(Vector3.zero);
-            ghostHouseList.Add(house);
 
             return house.GetComponentInChildren<PhantomHouse>();
         }

@@ -368,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6877494419099654379
 Transform:
   m_ObjectHideFlags: 0
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFishInNet: 0
-  fishPrefab: {fileID: 5563796027304402196}
+  fish: {fileID: 5563796027304402196}
 --- !u!1 &6591913885418973210
 GameObject:
   m_ObjectHideFlags: 0
