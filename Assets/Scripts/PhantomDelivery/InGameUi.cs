@@ -8,7 +8,7 @@ namespace PhantomDelivery
     public class InGameUi : MonoBehaviour
     {
 
-        private void Start()
+        private void Awake()
         {
             GameManager.onGameStateChanged += GameState;
         }

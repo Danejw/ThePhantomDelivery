@@ -7,7 +7,7 @@ namespace PhantomDelivery
 {
     public class FishBucket : MonoBehaviour
     {
-
+        [SerializeField] private GameObject fish;
         [SerializeField] private Net net;
 
         private void OnTriggerEnter(Collider other)
@@ -27,9 +27,28 @@ namespace PhantomDelivery
                 {
                     if (GameManager.Instance.amountOfFish > 0)
                     {
-                        // do something with fish
+                        // do something with fish if the net touches the bucket without a fish in the net
 
                     }
+                }
+
+
+            }
+        }
+
+        private void Update()
+        {
+            if (fish)
+            {
+                if (GameManager.Instance.amountOfFish > 0)
+                {
+                    if (!fish.gameObject.activeSelf)
+                        fish.SetActive(true);
+                }
+                else
+                {
+                    if (fish.gameObject.activeSelf)
+                        fish.SetActive(false);
                 }
             }
         }

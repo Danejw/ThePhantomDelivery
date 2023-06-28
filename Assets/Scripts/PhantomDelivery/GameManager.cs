@@ -55,6 +55,8 @@ namespace PhantomDelivery {
                         // What happens when the game ends
                         break;
                 }
+
+                Debug.Log("The Game State has changed to the " + _gameState + " state.");
             }
         }
 
@@ -161,7 +163,7 @@ namespace PhantomDelivery {
             if (fishAmountText && fishAmountText.text != amountOfFish.ToString()) { fishAmountText.text = amountOfFish.ToString(); }
             if (coinAmountText && coinAmountText.text != amountOfCoin.ToString()) { coinAmountText.text = amountOfCoin.ToString(); }
             if (globalTimeAmountText && globalTimeAmountText.text != globalTimer.RemainingTime.ToString()) { globalTimeAmountText.text = Mathf.RoundToInt(globalTimer.RemainingTime).ToString(); }
-            if (requestAmountTimeText && requestAmountTimeText.text != currentRequest.timer.RemainingTime.ToString()) { requestAmountTimeText.text = Mathf.RoundToInt(currentRequest.timer.RemainingTime).ToString(); }
+            if (currentRequest) if (requestAmountTimeText && requestAmountTimeText.text != currentRequest.timer.RemainingTime.ToString()) { requestAmountTimeText.text = Mathf.RoundToInt(currentRequest.timer.RemainingTime).ToString(); }
         }
 
         public void StartGame()
