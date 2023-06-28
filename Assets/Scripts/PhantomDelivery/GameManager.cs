@@ -10,6 +10,12 @@ namespace PhantomDelivery {
 
     public class GameManager : MonoBehaviour
     {
+        private static GameManager _instance;
+        public static GameManager Instance
+        {
+            get { return _instance; }
+        }
+
         public enum GameState
         {
             BeforeStart,
@@ -42,6 +48,8 @@ namespace PhantomDelivery {
                     case GameState.InGame:
                         // What happens when the game starts
                         globalTimer.Start();
+                        StartCoroutine(RequestRoutine(1));
+                        StartCoroutine(PlaceFishRoutine(10, 1));
                         break;
                     case GameState.EndGame:
                         // What happens when the game ends
@@ -92,7 +100,7 @@ namespace PhantomDelivery {
         [SerializeField] private int globalMaxTime = 100;
         [SerializeField] private float currentGlobalTime;
 
-        [SerializeField] private int amountOfFish = 0;
+        [SerializeField] public int amountOfFish = 0;
         [SerializeField] private int amountOfCoin = 0;
 
         [SerializeField] private int minRadius = 5;
@@ -102,11 +110,26 @@ namespace PhantomDelivery {
         [Header("Prefab References")]
         [SerializeField] private GameObject fishPrefab;
         [SerializeField] private GameObject ghostHandPrefab;
+        [SerializeField] private GameObject ghostHousePrefab;
         [SerializeField] private List<GameObject> fishList;
         [SerializeField] private List<GameObject> ghostHandList;
+        [SerializeField] private List<GameObject> ghostHouseList;
 
-        [SerializeField] private List<Timer> requests = new List<Timer>();
+        [SerializeField] private PhantomHouse currentRequest;
 
+        private void Awake()
+        {
+            // Check if an instance already exists
+            if (_instance != null && _instance != this)
+            {
+                // Destroy the duplicate instance
+                Destroy(this.gameObject);
+                return;
+            }
+
+            // Assign the singleton instance
+            _instance = this;
+        }
 
         private void Start()
         {
@@ -138,7 +161,7 @@ namespace PhantomDelivery {
             if (fishAmountText && fishAmountText.text != amountOfFish.ToString()) { fishAmountText.text = amountOfFish.ToString(); }
             if (coinAmountText && coinAmountText.text != amountOfCoin.ToString()) { coinAmountText.text = amountOfCoin.ToString(); }
             if (globalTimeAmountText && globalTimeAmountText.text != globalTimer.RemainingTime.ToString()) { globalTimeAmountText.text = Mathf.RoundToInt(globalTimer.RemainingTime).ToString(); }
-            // request UI
+            if (requestAmountTimeText && requestAmountTimeText.text != currentRequest.timer.RemainingTime.ToString()) { requestAmountTimeText.text = Mathf.RoundToInt(currentRequest.timer.RemainingTime).ToString(); }
         }
 
         public void StartGame()
@@ -146,8 +169,6 @@ namespace PhantomDelivery {
             gameState = GameState.InGame;
 
             onGameStart?.Invoke();
-
-            StartCoroutine(PlaceFishRoutine(10, 1));
         }
 
         public void EndGame()
@@ -199,8 +220,6 @@ namespace PhantomDelivery {
             if (amount < 0 && amountOfCoin == 0) return;
 
             amountOfCoin += amount;
-
-            onSuccessfulDelivery?.Invoke();
         }
 
         // reset coin
@@ -209,8 +228,46 @@ namespace PhantomDelivery {
             amountOfCoin = 0;
         }
 
+        public void SuccessfulDelivery(int coinAmount)
+        {
+            Destroy(currentRequest.gameObject);
+
+            onSuccessfulDelivery?.Invoke();
+
+            ChangeCoin(coinAmount);
+
+            StartCoroutine(RequestRoutine(1));
+        }
+
+        public void FailedDelivery()
+        {
+            Destroy(currentRequest.gameObject);
+
+            onFailedDelivery?.Invoke();
+
+            StartCoroutine(RequestRoutine(3));
+        }
+
 
         // Randomly Create Requests
+        public PhantomHouse PlaceGhostHouse()
+        {
+            if (!ghostHousePrefab) return null;
+
+            var house = Instantiate(ghostHousePrefab, RandomPositionWithinRange(Vector3.zero, maxRadius, maxRadius + 20),  Quaternion.identity, transform);
+            house.transform.LookAt(Vector3.zero);
+            ghostHouseList.Add(house);
+
+            return house.GetComponentInChildren<PhantomHouse>();
+        }
+
+        private IEnumerator RequestRoutine(int delay)
+        {
+            yield return new WaitForSeconds(delay);
+            var house = PlaceGhostHouse();
+            currentRequest = house;
+        }
+
 
         // Randomly Place Fish
         public void PlaceFish()

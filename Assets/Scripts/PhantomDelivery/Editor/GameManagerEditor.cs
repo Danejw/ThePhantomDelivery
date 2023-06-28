@@ -47,6 +47,9 @@ namespace PhantomDelivery
 
             if (GUILayout.Button("Reset Coin"))
                 gameManager.ResetCoin();
+
+            if (GUILayout.Button("Place Ghost House"))
+                gameManager.PlaceGhostHouse();
         }
     }
 }

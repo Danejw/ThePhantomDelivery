@@ -9,6 +9,10 @@ TagManager:
   - Destroyer
   - MiniWorldCamera
   - Water
+  - Net
+  - FishBucket
+  - Fish
+  - GhostHouse
   layers:
   - Default
   - TransparentFX
