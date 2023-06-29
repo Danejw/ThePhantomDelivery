@@ -8,10 +8,10 @@ namespace PhantomDelivery
 {
     public class Net : MonoBehaviour
     {
-        [SerializeField] private XRBaseInteractable interactable;
         [SerializeField] public bool isFishInNet = false;
         [SerializeField] public GameObject fish;
         [SerializeField] private XRSocketInteractor socket;
+        [SerializeField] private XRBaseInteractable interactable;
 
         private void Awake()
         {

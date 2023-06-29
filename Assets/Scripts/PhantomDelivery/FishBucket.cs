@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace PhantomDelivery
 {
@@ -9,6 +9,8 @@ namespace PhantomDelivery
     {
         [SerializeField] private GameObject fish;
         [SerializeField] private Net net;
+
+
 
         private void OnTriggerEnter(Collider other)
         {
@@ -31,8 +33,6 @@ namespace PhantomDelivery
 
                     }
                 }
-
-
             }
         }
 

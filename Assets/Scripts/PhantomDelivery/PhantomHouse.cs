@@ -22,6 +22,7 @@ namespace PhantomDelivery
             {
                 // Tells the game manager to send an event
                 GameManager.Instance.SuccessfulDelivery(worth);
+                GameManager.Instance.AddFish(-1);
             }
         }
 
