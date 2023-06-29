@@ -63,7 +63,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScrollSpeed: 100
-    - _Smoothness: 1
+    - _Smoothness: 0.673
     m_Colors:
     - _DeepWater: {r: 0.10145959, g: 0.1483179, b: 0.2264151, a: 0.9647059}
     - _NormalTiling: {r: 200, g: 200, b: 0, a: 0}
