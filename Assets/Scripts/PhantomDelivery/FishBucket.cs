@@ -43,10 +43,10 @@ namespace PhantomDelivery
 
         public void DuplicateFish()
         {
-            StartCoroutine(DelayDuplicateFish(3));
+            StartCoroutine(DelayDuplicateFish(.1f));
         }
 
-        public IEnumerator DelayDuplicateFish(int time)
+        public IEnumerator DelayDuplicateFish(float time)
         {
             isDuplicating = true;
             yield return new WaitForSeconds(time);

@@ -49,7 +49,8 @@ namespace PhantomDelivery {
                         // What happens when the game starts
                         globalTimer.Start();
                         StartCoroutine(RequestRoutine(1));
-                        StartCoroutine(PlaceGhostHandsRoutine(amountOfGhostHands, delayBetweenGhostHandPlacement));
+                        if (placeGhostHandsOverTime) StartCoroutine(PlaceGhostHandsRoutine(amountOfGhostHands, delayBetweenGhostHandPlacement));
+                        if (placeFishOverTime) StartCoroutine(PlaceFishRoutine(amountOfFishToPlace, delayBetweenFishPlacement));
                         break;
                     case GameState.EndGame:
                         // What happens when the game ends
@@ -110,8 +111,14 @@ namespace PhantomDelivery {
         [SerializeField] private int maxRadius = 20;
 
         [Space(5)]
+        [SerializeField] private bool placeGhostHandsOverTime = true;
         [SerializeField] private int amountOfGhostHands = 30;
-        [SerializeField] private int delayBetweenGhostHandPlacement = 3;
+        [SerializeField] private int delayBetweenGhostHandPlacement = 10;
+
+        [Space(5)]
+        [SerializeField] private bool placeFishOverTime = true;
+        [SerializeField] private int amountOfFishToPlace = 30;
+        [SerializeField] private int delayBetweenFishPlacement = 10;
 
         [Space(5)]
         [Header("Prefab References")]
@@ -236,9 +243,7 @@ namespace PhantomDelivery {
         {
             onSuccessfulDelivery?.Invoke();
 
-            StartCoroutine(SuccessfulDeliveryRoutine(coinAmount));
-
-            StartCoroutine(RequestRoutine(1));
+            StartCoroutine(SuccessfulDeliveryRoutine(coinAmount));           
         }
 
         private IEnumerator SuccessfulDeliveryRoutine(int coinAmount)
@@ -255,6 +260,8 @@ namespace PhantomDelivery {
 
             ChangeCoin(coinAmount);
             AddFish(-1);
+
+            StartCoroutine(RequestRoutine(1));
         }
 
         public void FailedDelivery()
