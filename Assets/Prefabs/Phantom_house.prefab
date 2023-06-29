@@ -2550,8 +2550,8 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 4
-    tilesY: 4
+    tilesX: 3
+    tilesY: 3
     animationType: 0
     rowIndex: 0
     cycles: 1
@@ -5191,7 +5191,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.9292453, b: 0.5990566, a: 1}
+      maxColor: {r: 1, g: 0.55627203, b: 0.11792451, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

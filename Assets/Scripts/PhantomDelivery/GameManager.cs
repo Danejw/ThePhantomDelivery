@@ -248,7 +248,7 @@ namespace PhantomDelivery {
 
         private IEnumerator SuccessfulDeliveryRoutine(int coinAmount)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4);
 
             if (currentRequest)
             {
