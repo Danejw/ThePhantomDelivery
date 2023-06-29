@@ -140,8 +140,8 @@ GameObject:
   - component: {fileID: 881808075767539591}
   - component: {fileID: 869371365244860835}
   - component: {fileID: 5643003400536656083}
-  - component: {fileID: 8615948933898660155}
   - component: {fileID: 8615948933898660149}
+  - component: {fileID: 8615948933898660155}
   m_Layer: 7
   m_Name: CaughtFish
   m_TagString: CaughtFish
@@ -302,6 +302,19 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!65 &8615948933898660149
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537933217508998461}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.744253, y: 4.500541, z: 3.8250587}
+  m_Center: {x: 0.15868305, y: 0.10928317, z: 0.008057789}
 --- !u!65 &8615948933898660155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -315,19 +328,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.682611, y: 3.064203, z: 1}
   m_Center: {x: 0.1562874, y: 0.09081918, z: 0.00679449}
---- !u!65 &8615948933898660149
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537933217508998461}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.744253, y: 3.091136, z: 1}
-  m_Center: {x: 0.15868305, y: 0.10928317, z: 0.008057788}
 --- !u!1 &1245966188048034622
 GameObject:
   m_ObjectHideFlags: 0
