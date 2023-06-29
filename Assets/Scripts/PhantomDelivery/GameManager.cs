@@ -49,7 +49,6 @@ namespace PhantomDelivery {
                         // What happens when the game starts
                         globalTimer.Start();
                         StartCoroutine(RequestRoutine(1));
-                        StartCoroutine(PlaceFishRoutine(10, 1));
                         break;
                     case GameState.EndGame:
                         // What happens when the game ends
@@ -93,7 +92,6 @@ namespace PhantomDelivery {
         [SerializeField] private TMP_Text globalTimeAmountText;
         [SerializeField] private TMP_Text fishAmountText;
         [SerializeField] private TMP_Text coinAmountText;
-        [SerializeField] private TMP_Text requestAmountTimeText;
 
 
         [Space(5)]
@@ -153,7 +151,7 @@ namespace PhantomDelivery {
 
             // Condition to end the game
             if (globalTimer.RemainingTime <= 0) gameState = GameState.EndGame;
-            if (currentRequest.timer.RemainingTime <= 0) FailedDelivery();
+            if (currentRequest && currentRequest.timer.RemainingTime <= 0) FailedDelivery();
 
             // debug
             currentGlobalTime = globalTimer.ElapsedTime;
@@ -162,7 +160,6 @@ namespace PhantomDelivery {
             if (fishAmountText && fishAmountText.text != amountOfFish.ToString()) { fishAmountText.text = amountOfFish.ToString(); }
             if (coinAmountText && coinAmountText.text != amountOfCoin.ToString()) { coinAmountText.text = amountOfCoin.ToString(); }
             if (globalTimeAmountText && globalTimeAmountText.text != globalTimer.RemainingTime.ToString()) { globalTimeAmountText.text = Mathf.RoundToInt(globalTimer.RemainingTime).ToString(); }
-            if (currentRequest) if (requestAmountTimeText && requestAmountTimeText.text != currentRequest.timer.RemainingTime.ToString()) { requestAmountTimeText.text = Mathf.RoundToInt(currentRequest.timer.RemainingTime).ToString(); }
         }
 
         public void StartGame()
@@ -187,7 +184,7 @@ namespace PhantomDelivery {
             ResetCoin();
 
             ClearFishList();
-            ghostHandList.Clear();
+            ClearGhostHandList();
 
             currentGlobalTime = 0;
 
@@ -234,7 +231,11 @@ namespace PhantomDelivery {
 
         public void SuccessfulDelivery(int coinAmount)
         {
-            if (currentRequest) Destroy(currentRequest.gameObject);
+            if (currentRequest)
+            {
+                currentRequest.ClearFishList();
+                Destroy(currentRequest.transform.parent.gameObject);
+            }
 
             onSuccessfulDelivery?.Invoke();
 
@@ -245,7 +246,11 @@ namespace PhantomDelivery {
 
         public void FailedDelivery()
         {
-            if (currentRequest) Destroy(currentRequest.gameObject);
+            if (currentRequest)
+            {
+                currentRequest.ClearFishList();
+                Destroy(currentRequest.transform.parent.gameObject);
+            }
 
             onFailedDelivery?.Invoke();
 
@@ -269,17 +274,21 @@ namespace PhantomDelivery {
             yield return new WaitForSeconds(delay);
             var house = PlaceGhostHouse();
             currentRequest = house;
+            currentRequest.Init();
         }
 
 
         // Randomly Place Fish
-        public void PlaceFish()
+        public GameObject PlaceFish()
         {
             if (fishPrefab)
             {
                 var fish = Instantiate(fishPrefab, RandomPositionWithinRange(Vector3.zero, minRadius, maxRadius), Quaternion.identity, transform);
                 fishList.Add(fish);
+                return fish;
             }
+            else
+            { return null; }
         }
 
         public IEnumerator PlaceFishRoutine(int amount, float time)

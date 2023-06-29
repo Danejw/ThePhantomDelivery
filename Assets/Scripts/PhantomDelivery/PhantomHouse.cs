@@ -7,9 +7,14 @@ namespace PhantomDelivery
 {
     public class PhantomHouse : MonoBehaviour
     {
+        [SerializeField] TMPro.TMP_Text uiTimer;
+
         public Timer timer;
         public int duration = 60;
+        public int fishCount = 1;
         public int worth = 1;
+
+        public List<GameObject> fishList = new List<GameObject>();
 
         private void OnTriggerEnter(Collider other)
         {
@@ -20,26 +25,36 @@ namespace PhantomDelivery
             }
         }
 
-        private void OnEnable()
+        public void Init()
         {
+            fishCount = Random.Range(1, 3);
+            worth = fishCount;
+
+            for (int i=0; i < fishCount; i++)
+            {
+                var fish = GameManager.Instance.PlaceFish();
+                fishList.Add(fish);
+            }
+
             timer = new Timer(duration);
             timer.Start();
         }
 
         private void Update()
         {
-            timer.Update();
+            if (timer != null) timer.Update();
 
-            if (timer.RemainingTime <= 0)
-            {
-                FailedDelivery();
-            }
+            if (uiTimer) if (uiTimer.text != timer.RemainingTime.ToString()) { uiTimer.text = Mathf.RoundToInt(timer.RemainingTime).ToString(); }
+
         }
 
-        private void FailedDelivery()
+        public void ClearFishList()
         {
-            // Tell the gamemanager to throw an event
-            GameManager.Instance.FailedDelivery();
+            foreach (var fish in fishList)
+            {
+                Destroy(fish);
+            }
+            fishList.Clear();
         }
     }
 }
