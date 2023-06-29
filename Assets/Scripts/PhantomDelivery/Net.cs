@@ -8,22 +8,31 @@ namespace PhantomDelivery
 {
     public class Net : MonoBehaviour
     {
-        [SerializeField] public bool isFishInNet = false;
-        [SerializeField] public GameObject fish;
+        [SerializeField] AudioSource audioSource;
         [SerializeField] private XRSocketInteractor socket;
         [SerializeField] private XRBaseInteractable interactable;
 
-        private void Awake()
-        {
-            //interactable = GetComponent<XRBaseInteractable>();  
-        }
 
         private void OnTriggerEnter(Collider other)
         {
+            // pick up fish from water
             if (other.gameObject.tag == "Fish")
             {
-                isFishInNet = true;
                 Destroy(other.gameObject);
+
+                GameManager.Instance.AddFish(1);
+            }
+
+
+            if (other.gameObject.tag == "Water")
+            {
+                if (audioSource)
+                {
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.Play();
+                    }
+                }
             }
 
             if (other.gameObject.tag == "Terrain")
@@ -32,26 +41,9 @@ namespace PhantomDelivery
             }
         }
 
-        private void Update()
-        {
-            if (fish != null)
-            {
-                if (!isFishInNet)
-                {
-                    if (fish.gameObject.activeSelf) { fish.SetActive(false); }
-                }
-
-                if (isFishInNet)
-                {
-                    if (!fish.gameObject.activeSelf) { fish.SetActive(true); }
-                }
-            }
-        }
-
-
         private void Respawn()
         {
-            socket.StartManualInteraction(interactable);
+            socket?.StartManualInteraction(interactable);
         }
     }
 }

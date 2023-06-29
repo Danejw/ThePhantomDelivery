@@ -51,6 +51,14 @@ namespace PhantomDelivery
             GameManager.onFailedDelivery -= PlayFailedDelivery;
         }
 
+        private void PlaySuccesfulDelivery()
+        {
+            if (successfulDeliveryRequestClip)
+            {
+                PlayAudioClip(successfulDeliveryRequestClip);
+            }
+        }
+
         private void PlayFailedDelivery() 
         {
             if (failedDeliveryRequestClip) 
@@ -59,13 +67,7 @@ namespace PhantomDelivery
             }
         }
 
-        private void PlaySuccesfulDelivery()
-        {
-            if (successfulDeliveryRequestClip)
-            {
-                PlayAudioClip(successfulDeliveryRequestClip);
-            }
-        }
+
 
         private void PlayNewDelivery()
         {
@@ -110,7 +112,7 @@ namespace PhantomDelivery
         private void PlayAudioClip(AudioClip clip)
         {
             audioSource.clip = clip;
-            audioSource.Play();
+            if (!audioSource.isPlaying) audioSource.Play();
         }
     }
 }

@@ -20,6 +20,8 @@ public class Motor : XRJoystick
     [SerializeField] private AudioClip startupClip;
     [SerializeField] private AudioClip idleClip;
     [SerializeField] private AudioClip runningClip;
+    public bool useStartup = false;
+    public bool useIdle = false;
 
     [Space(5)]
     [Header(header: "Forward Movement")]
@@ -63,7 +65,7 @@ public class Motor : XRJoystick
         m_Controller.SendHapticImpulse(1, 0.5f);
 
         // play motor start up sound clip then when done, loop the idle sound
-        StartCoroutine(EngineStartUp());
+        if (useStartup) StartCoroutine(EngineStartUp());
 
         if (debug) Debug.Log(m_Controller);
         if (debug) Debug.Log("Selected");
@@ -105,7 +107,7 @@ public class Motor : XRJoystick
         m_Controller.SendHapticImpulse(0, 0);
 
         // play and loop idle sound clip
-        PlayMotorIdleLoop();
+        if (useIdle) PlayMotorIdleLoop();
 
         if (debug) Debug.Log("DeActivated");
 

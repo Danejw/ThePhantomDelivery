@@ -50,6 +50,15 @@ namespace PhantomDelivery
 
             if (GUILayout.Button("Place Ghost House"))
                 gameManager.PlaceGhostHouse();
+
+            if (GUILayout.Button("Succesful Delivery"))
+                gameManager.SuccessfulDelivery(1);
+
+            if (GUILayout.Button("Failed Delivery"))
+                gameManager.FailedDelivery();
+
+            if (GUILayout.Button("New Delivery"))
+                gameManager.NewDelivery();
         }
     }
 }

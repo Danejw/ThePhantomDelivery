@@ -8,15 +8,18 @@ namespace PhantomDelivery
     [RequireComponent(typeof(AudioSource))]
     public class MusicPlayer : MonoBehaviour
     {
+        [SerializeField] private AudioSource audioSource;
+
         [SerializeField] private AudioClip gameBeforeStartClip;
         [SerializeField] private AudioClip gameStartClip;
         [SerializeField] private AudioClip gameEndClip;
 
-        private AudioSource audioSource;
+
+
 
         private void Start()
         {
-            audioSource = GetComponent<AudioSource>();
+            if (!audioSource) audioSource = GetComponent<AudioSource>();
 
             GameManager.onGameStateChanged += GameStateChanged;
         }

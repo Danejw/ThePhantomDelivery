@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -8,49 +9,51 @@ namespace PhantomDelivery
     public class FishBucket : MonoBehaviour
     {
         [SerializeField] private GameObject fish;
-        [SerializeField] private Net net;
+        [SerializeField] private XRSocketInteractor socket;
+        public XRBaseInteractable interactable;
 
-
+        private bool isDuplicating = false;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Net")
+            if (other.gameObject.tag == "GhostPalm")
             {
-                other.gameObject.TryGetComponent<Net>(out net);
-
-                if (net.isFishInNet)
-                {
-                    // add fish to bucket
-                    GameManager.Instance.AddFish(1);
-                    net.isFishInNet = false;
-
-                }
-                else
-                {
-                    if (GameManager.Instance.amountOfFish > 0)
-                    {
-                        // do something with fish if the net touches the bucket without a fish in the net
-
-                    }
-                }
+                GameManager.Instance.StealFish(1);
             }
         }
 
         private void Update()
         {
-            if (fish)
+            // duplicate fish from the socket when the user has at least one fish
+            if (GameManager.Instance.amountOfFish > 0)
             {
-                if (GameManager.Instance.amountOfFish > 0)
+                if (!socket.hasSelection && !isDuplicating)
                 {
-                    if (!fish.gameObject.activeSelf)
-                        fish.SetActive(true);
-                }
-                else
-                {
-                    if (fish.gameObject.activeSelf)
-                        fish.SetActive(false);
+                    DuplicateFish();
                 }
             }
+            else
+            {
+                if (socket.hasSelection)
+                {
+                    Destroy(socket.GetOldestInteractableSelected().transform.gameObject);
+                }
+            }
+        }
+
+        public void DuplicateFish()
+        {
+            StartCoroutine(DelayDuplicateFish(3));
+        }
+
+        public IEnumerator DelayDuplicateFish(int time)
+        {
+            isDuplicating = true;
+            yield return new WaitForSeconds(time);
+            var fishInstance = Instantiate(fish, transform);
+            interactable = fishInstance.GetComponent<XRBaseInteractable>();
+            socket.StartManualInteraction(interactable);
+            isDuplicating = false;
         }
     }
 }

@@ -14,22 +14,35 @@ namespace PhantomDelivery
         public int fishCount = 1;
         public int worth = 1;
 
+        private bool success = false;
+
+        public bool randomize;
+        public Vector2 randomRange;
+
         public List<GameObject> fishList = new List<GameObject>();
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Fish")
+            if (other.gameObject.tag == "CaughtFish")
             {
                 // Tells the game manager to send an event
-                GameManager.Instance.SuccessfulDelivery(worth);
-                GameManager.Instance.AddFish(-1);
+                if (!success)
+                {
+                    Destroy(other.gameObject);
+                    GameManager.Instance.SuccessfulDelivery(worth);
+                    success = true;
+                }
             }
         }
 
         public void Init()
         {
-            fishCount = Random.Range(1, 3);
-            worth = fishCount;
+            if (randomize)
+            {
+                fishCount = Random.Range((int)randomRange.x, (int)randomRange.y);
+                worth = fishCount;
+            }
+                 
 
             for (int i=0; i < fishCount; i++)
             {

@@ -148,16 +148,10 @@ namespace PhantomDelivery {
             if (gameState == GameState.InGame)
             {
                 globalTimer.Update();
-
-                // Randomly Create Requests
-
-                // Randomly Place Fish
-
-                // Randomly Place Ghost hands
             }
 
             // Condition to end the game
-            if (globalTimer.RemainingTime <= 0) gameState = GameState.EndGame;
+            if (globalTimer != null && globalTimer.RemainingTime <= 0) gameState = GameState.EndGame;
             if (currentRequest && currentRequest.timer.RemainingTime <= 0) FailedDelivery();
 
             // debug
@@ -204,12 +198,14 @@ namespace PhantomDelivery {
         {
             amountOfFish += amount;
 
-            onFishCaught?.Invoke();
+            if( amountOfFish < 0) amountOfFish = 0;
+
+            if (amount > 0) onFishCaught?.Invoke();
         }
 
         public void StealFish(int amount)
         {
-            if (amountOfFish == 0) return;
+            if (amountOfFish <= 0) return;
 
             amountOfFish -= amount;
 
@@ -238,17 +234,27 @@ namespace PhantomDelivery {
 
         public void SuccessfulDelivery(int coinAmount)
         {
+            onSuccessfulDelivery?.Invoke();
+
+            StartCoroutine(SuccessfulDeliveryRoutine(coinAmount));
+
+            StartCoroutine(RequestRoutine(1));
+        }
+
+        private IEnumerator SuccessfulDeliveryRoutine(int coinAmount)
+        {
+            yield return new WaitForSeconds(2);
+
             if (currentRequest)
             {
                 currentRequest.ClearFishList();
                 Destroy(currentRequest.transform.parent.gameObject);
             }
 
-            onSuccessfulDelivery?.Invoke();
+
 
             ChangeCoin(coinAmount);
-
-            StartCoroutine(RequestRoutine(1));
+            AddFish(-1);
         }
 
         public void FailedDelivery()
@@ -262,6 +268,11 @@ namespace PhantomDelivery {
             onFailedDelivery?.Invoke();
 
             StartCoroutine(RequestRoutine(3));
+        }
+
+        public void NewDelivery()
+        {
+            onNewDeliveryRequest?.Invoke();
         }
 
 
@@ -282,6 +293,7 @@ namespace PhantomDelivery {
             var house = PlaceGhostHouse();
             currentRequest = house;
             currentRequest.Init();
+            NewDelivery();
         }
 
 
