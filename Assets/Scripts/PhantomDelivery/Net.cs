@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
-
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace PhantomDelivery
 {
     public class Net : MonoBehaviour
     {
+        [SerializeField] private XRBaseInteractable interactable;
         [SerializeField] public bool isFishInNet = false;
         [SerializeField] public GameObject fish;
+        [SerializeField] private XRSocketInteractor socket;
 
+        private void Awake()
+        {
+            //interactable = GetComponent<XRBaseInteractable>();  
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -17,6 +24,11 @@ namespace PhantomDelivery
             {
                 isFishInNet = true;
                 Destroy(other.gameObject);
+            }
+
+            if (other.gameObject.tag == "Terrain")
+            {
+                Respawn();
             }
         }
 
@@ -34,6 +46,12 @@ namespace PhantomDelivery
                     if (!fish.gameObject.activeSelf) { fish.SetActive(true); }
                 }
             }
+        }
+
+
+        private void Respawn()
+        {
+            socket.StartManualInteraction(interactable);
         }
     }
 }

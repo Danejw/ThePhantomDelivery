@@ -49,6 +49,7 @@ namespace PhantomDelivery {
                         // What happens when the game starts
                         globalTimer.Start();
                         StartCoroutine(RequestRoutine(1));
+                        StartCoroutine(PlaceGhostHandsRoutine(amountOfGhostHands, delayBetweenGhostHandPlacement));
                         break;
                     case GameState.EndGame:
                         // What happens when the game ends
@@ -100,11 +101,17 @@ namespace PhantomDelivery {
         [SerializeField] private int globalMaxTime = 100;
         [SerializeField] private float currentGlobalTime;
 
+        [Space(5)]
         [SerializeField] public int amountOfFish = 0;
         [SerializeField] private int amountOfCoin = 0;
 
+        [Space(5)]
         [SerializeField] private int minRadius = 5;
         [SerializeField] private int maxRadius = 20;
+
+        [Space(5)]
+        [SerializeField] private int amountOfGhostHands = 30;
+        [SerializeField] private int delayBetweenGhostHandPlacement = 3;
 
         [Space(5)]
         [Header("Prefab References")]
@@ -307,6 +314,15 @@ namespace PhantomDelivery {
             {
                 var hand = Instantiate(ghostHandPrefab, RandomPositionWithinRange(Vector3.zero, minRadius, maxRadius), Quaternion.identity, transform);
                 ghostHandList.Add(hand);
+            }
+        }
+
+        public IEnumerator PlaceGhostHandsRoutine(int amount, float time)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                PlaceGhostHands();
+                yield return new WaitForSeconds(time);
             }
         }
 
