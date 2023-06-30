@@ -160,6 +160,7 @@ namespace PhantomDelivery {
 
             // Condition to end the game
             if (globalTimer != null && globalTimer.RemainingTime <= 0 && gameState != GameState.EndGame) gameState = GameState.EndGame;
+            if (amountOfCoin >= 7 && gameState != GameState.EndGame) gameState = GameState.EndGame;
             if (currentRequest && currentRequest.timer.RemainingTime <= 0) FailedDelivery();
 
             // debug
