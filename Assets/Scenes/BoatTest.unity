@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 244541166}
-  m_IndirectSpecularColor: {r: 0.1022018, g: 0.11821796, b: 0.060369022, a: 1}
+  m_IndirectSpecularColor: {r: 0.10220188, g: 0.11821796, b: 0.06036899, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275b7a4e4669a0a42b24f84ee5fc50e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameState: 2
+  _gameState: 1
   globalTimeAmountText: {fileID: 1631181723}
   fishAmountText: {fileID: 1340078227}
   coinAmountText: {fileID: 312676348}
@@ -14127,7 +14127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1571061532}
-  gameBeforeStartClip: {fileID: 8300000, guid: ac3665a978bdaa74ea338ccdb081af1d, type: 3}
+  gameBeforeStartClip: {fileID: 8300000, guid: 3dd10cc23c486244b97b63fc7175b590, type: 3}
   gameStartClip: {fileID: 8300000, guid: fc180eaf09a7f0642977fa7510b1c0bd, type: 3}
   gameEndClip: {fileID: 8300000, guid: 26bab7bb1e1b1c646922c9d60cb5f99a, type: 3}
 --- !u!82 &1571061532
@@ -14141,7 +14141,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -998725204066153724, guid: 108a5f96d8cd286408efa111862d89f6,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: ac3665a978bdaa74ea338ccdb081af1d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3dd10cc23c486244b97b63fc7175b590, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.25
   m_Pitch: 1
