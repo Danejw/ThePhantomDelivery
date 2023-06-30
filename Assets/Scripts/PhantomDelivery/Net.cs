@@ -41,6 +41,14 @@ namespace PhantomDelivery
             }
         }
 
+        private void Update()
+        {
+            if (interactable.gameObject.transform.position.y < -10)
+            {
+                Respawn();
+            }
+        }
+
         private void Respawn()
         {
             socket?.StartManualInteraction(interactable);
