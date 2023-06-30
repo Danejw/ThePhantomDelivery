@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 244541166}
-  m_IndirectSpecularColor: {r: 0.1022018, g: 0.11821796, b: 0.060369022, a: 1}
+  m_IndirectSpecularColor: {r: 0.10220188, g: 0.11821796, b: 0.06036899, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -160,6 +160,7 @@ MonoBehaviour:
   currentGlobalTime: 0
   amountOfFish: 0
   amountOfCoin: 0
+  amountOfCoinToWin: 10
   minRadius: 50
   maxRadius: 200
   placeGhostHandsOverTime: 1
@@ -5965,10 +5966,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Thank you for play The Phantom Delivery!
+  m_text: 'Thank you for playing The Phantom Delivery!
 
 
-    Try Again'
+    You didn''t gather enough
+    coin.
+
+
+    Try Again...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
   m_sharedMaterial: {fileID: 4687939059374929122, guid: f675742eaf9c20a4f909d78ee7a14fed,
@@ -11208,6 +11213,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ae696347c89f6418e9825d9bce671d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 396755145}
+  winText: Congratulations, you gathered enough coin to get your sister's medicine!
+  loseText: 'Thank you for playing The Phantom Delivery!
+
+
+    You didn''t gather
+    enough coin.
+
+
+    Try Again...'
 --- !u!1 &563523501
 GameObject:
   m_ObjectHideFlags: 0
