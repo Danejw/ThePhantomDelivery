@@ -8,6 +8,7 @@ namespace PhantomDelivery
     public class PhantomHouse : MonoBehaviour
     {
         [SerializeField] TMPro.TMP_Text uiTimer;
+        [SerializeField] ParticleSystem particle;
 
         public Timer timer;
         public int duration = 60;
@@ -31,6 +32,8 @@ namespace PhantomDelivery
                     Destroy(other.gameObject);
                     GameManager.Instance.SuccessfulDelivery(worth);
                     success = true;
+
+                    if (particle) particle.Play();
                 }
             }
         }
