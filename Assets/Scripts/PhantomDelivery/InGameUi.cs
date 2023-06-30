@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,18 +8,25 @@ namespace PhantomDelivery
 {
     public class InGameUi : MonoBehaviour
     {
+        [SerializeField] private ParticleSystem coinParticle;
+
 
         private void Awake()
         {
             GameManager.onGameStateChanged += GameState;
+            GameManager.onSuccessfulDelivery += PlayCoinParticle;
         }
 
         private void OnDestroy()
         {
            GameManager.onGameStateChanged -= GameState;
+            GameManager.onSuccessfulDelivery -= PlayCoinParticle;
         }
 
-
+        private void PlayCoinParticle()
+        {
+            if (coinParticle) coinParticle.Play();
+        }
 
         private void GameState(GameManager.GameState state)
         {
