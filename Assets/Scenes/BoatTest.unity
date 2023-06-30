@@ -394,7 +394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 27.999996}
+  m_AnchoredPosition: {x: 0, y: 85}
   m_SizeDelta: {x: -200, y: -144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &92231856
@@ -733,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.205}
   m_SizeDelta: {x: 600, y: 440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234116935
@@ -12103,7 +12103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: 16}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &566623379
@@ -12126,11 +12126,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'To control the boat, grab the lever with the grip button and and press
-    the trigger to start moving!
-
-
-    Have Fun :)'
+  m_text: "You are in a haunted place where you can earn some coins by feeding fish
+    to a hungry ghost. But beware, this is not a game for the faint of heart. You
+    will need courage, skill and speed to survive this challenge. \n\nHere are the
+    instructions:\n\u2022    To control the boat, grab the lever with the grip button
+    and and press the trigger to start moving!\n\u2022    Grab the fishing scoop
+    with your grip button and use it to catch fish from the water.\n\u2022    Throw
+    the fish using your grip button at the open mouth of the Phantom House. The house
+    will disappear after a certain time, if that happens, find the next house.\n\u2022   
+    Follow the glowing orb Aleya, who will guide you to the fish. But be careful,
+    Aleya is not always your friend. She may also lead you to the ghostly hands that
+    will snatch your fish away. These spirits are greedy and hungry for fish!\n\u2022   
+    Deliver 7 fish to the Phantom House before the timer runs out. If you do, you
+    will earn your coins and escape this nightmare. If you don\u2019t, you will face
+    a terrible fate.\nGood luck, brave ones! You will need it in this spooky adventure."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
   m_sharedMaterial: {fileID: 4687939059374929122, guid: f675742eaf9c20a4f909d78ee7a14fed,
@@ -12165,7 +12174,7 @@ MonoBehaviour:
   m_fontSizeMin: 0.1
   m_fontSizeMax: 400
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -13761,7 +13770,7 @@ RectTransform:
   m_GameObject: {fileID: 1151359635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 234116934}
@@ -13769,7 +13778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000045776367}
+  m_AnchoredPosition: {x: 0, y: 42}
   m_SizeDelta: {x: -0.00067139, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1151359637
@@ -20611,7 +20620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -90}
+  m_AnchoredPosition: {x: 0, y: -188}
   m_SizeDelta: {x: 150, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1611893772
