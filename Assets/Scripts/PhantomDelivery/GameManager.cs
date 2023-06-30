@@ -104,7 +104,8 @@ namespace PhantomDelivery {
 
         [Space(5)]
         [SerializeField] public int amountOfFish = 0;
-        [SerializeField] private int amountOfCoin = 0;
+        [SerializeField] public int amountOfCoin = 0;
+        [SerializeField] public int amountOfCoinToWin = 10;
 
         [Space(5)]
         [SerializeField] private int minRadius = 5;
@@ -158,7 +159,7 @@ namespace PhantomDelivery {
             }
 
             // Condition to end the game
-            if (globalTimer != null && globalTimer.RemainingTime <= 0) gameState = GameState.EndGame;
+            if (globalTimer != null && globalTimer.RemainingTime <= 0 && gameState != GameState.EndGame) gameState = GameState.EndGame;
             if (currentRequest && currentRequest.timer.RemainingTime <= 0) FailedDelivery();
 
             // debug

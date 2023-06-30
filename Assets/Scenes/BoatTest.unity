@@ -160,6 +160,7 @@ MonoBehaviour:
   currentGlobalTime: 0
   amountOfFish: 0
   amountOfCoin: 0
+  amountOfCoinToWin: 10
   minRadius: 50
   maxRadius: 200
   placeGhostHandsOverTime: 1
@@ -11198,6 +11199,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ae696347c89f6418e9825d9bce671d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 396755145}
+  winText: Congratulations! You gathered enough coin to get your sister's medicine.
+  loseText: 'Thank you for playing The Phantom Delivery!
+
+
+    You didn''t gather
+    enough coin.
+
+
+    Try Again...'
 --- !u!1 &563523501
 GameObject:
   m_ObjectHideFlags: 0
