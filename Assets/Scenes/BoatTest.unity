@@ -160,7 +160,7 @@ MonoBehaviour:
   currentGlobalTime: 0
   amountOfFish: 0
   amountOfCoin: 0
-  amountOfCoinToWin: 10
+  amountOfCoinToWin: 7
   minRadius: 50
   maxRadius: 200
   placeGhostHandsOverTime: 1
